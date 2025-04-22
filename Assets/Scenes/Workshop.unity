@@ -38,6 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5681,12 +5682,12 @@ MonoBehaviour:
   m_RequiresColorTexture: 0
   m_Version: 2
   m_TaaSettings:
-    m_Quality: 3
-    m_FrameInfluence: 0.1
-    m_JitterScale: 1
-    m_MipBias: 0
-    m_VarianceClampScale: 0.9
-    m_ContrastAdaptiveSharpening: 0
+    quality: 3
+    frameInfluence: 0.1
+    jitterScale: 1
+    mipBias: 0
+    varianceClampScale: 0.9
+    contrastAdaptiveSharpening: 0
 --- !u!114 &446282631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12443,7 +12444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_System: {fileID: 1210416358}
-  m_MoveSpeed: 1.5
+  m_MoveSpeed: 5
   m_EnableStrafe: 0
   m_EnableFly: 0
   m_UseGravity: 1
@@ -12523,7 +12524,7 @@ MonoBehaviour:
   m_OriginBaseGameObject: {fileID: 1210416353}
   m_CameraFloorOffsetObject: {fileID: 991226376}
   m_RequestedTrackingOriginMode: 1
-  m_CameraYOffset: 1.1176
+  m_CameraYOffset: 2.28
 --- !u!4 &1210416361
 Transform:
   m_ObjectHideFlags: 0
@@ -16055,6 +16056,7 @@ GameObject:
   - component: {fileID: 1580732873}
   - component: {fileID: 1580732872}
   - component: {fileID: 1580732871}
+  - component: {fileID: 1580732874}
   m_Layer: 0
   m_Name: Wheel1
   m_TagString: Untagged
@@ -16250,7 +16252,7 @@ Transform:
   m_GameObject: {fileID: 1580732870}
   serializedVersion: 2
   m_LocalRotation: {x: 0.50000006, y: -0.50000006, z: 0.49999997, w: -0.49999994}
-  m_LocalPosition: {x: 65.32618, y: -5.716301, z: 50.805733}
+  m_LocalPosition: {x: 65.99, y: -5.716301, z: 50.805733}
   m_LocalScale: {x: 23.132956, y: 23.132956, z: 23.132956}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -16263,6 +16265,78 @@ Transform:
   - {fileID: 8674042572934343366}
   m_Father: {fileID: 543450652736917099}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1580732874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1580732870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 434cd70b6a5740cca11da2a0417cf0ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AffordanceStateProvider: {fileID: 0}
+  m_ReplaceIdleStateValueWithInitialValue: 0
+  m_AffordanceThemeDatum:
+    m_UseConstant: 0
+    m_ConstantValue:
+      m_StateAnimationCurve:
+        m_UseConstant: 1
+        m_ConstantValue:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        m_Variable: {fileID: 0}
+      m_List:
+      - stateName: disabled
+        animationStateStartValue: 0
+        animationStateEndValue: 0
+      - stateName: idle
+        animationStateStartValue: 0
+        animationStateEndValue: 0
+      - stateName: hovered
+        animationStateStartValue: 0
+        animationStateEndValue: 0
+      - stateName: hoveredPriority
+        animationStateStartValue: 0
+        animationStateEndValue: 0
+      - stateName: selected
+        animationStateStartValue: 0
+        animationStateEndValue: 0
+      - stateName: activated
+        animationStateStartValue: 0
+        animationStateEndValue: 0
+      - stateName: focused
+        animationStateStartValue: 0
+        animationStateEndValue: 0
+    m_Variable: {fileID: 0}
+  m_ValueUpdated:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SkinnedMeshRenderer: {fileID: 0}
+  m_BlendShapeIndex: 0
 --- !u!1 &1588882981
 GameObject:
   m_ObjectHideFlags: 0
@@ -21811,6 +21885,7 @@ GameObject:
   - component: {fileID: 39293362101286836}
   - component: {fileID: 940914085058399589}
   - component: {fileID: 7547861776060297211}
+  - component: {fileID: 7547861776060297212}
   m_Layer: 0
   m_Name: M_WheelBLSpoke4
   m_TagString: Untagged
@@ -22370,6 +22445,7 @@ GameObject:
   - component: {fileID: 1020191714755125594}
   - component: {fileID: 3185750622634199157}
   - component: {fileID: 1265043996660882817}
+  - component: {fileID: 3185750622634199158}
   m_Layer: 0
   m_Name: M_WheelBLSpoke3
   m_TagString: Untagged
@@ -23514,6 +23590,7 @@ GameObject:
   - component: {fileID: 4211107575310728167}
   - component: {fileID: 4531981945726525440}
   - component: {fileID: 224298576982987029}
+  - component: {fileID: 4531981945726525441}
   m_Layer: 0
   m_Name: M_WheelBLSpoke2
   m_TagString: Untagged
@@ -25277,6 +25354,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1052743714830245289}
   m_Mesh: {fileID: 9191037963523144438, guid: 0bee5b3b1193d4f12b56f5c0186eefe1, type: 3}
+--- !u!65 &3185750622634199158
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1052743714830245289}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 0.016387774, y: 0.04269538, z: 0.07003529}
+  m_Center: {x: 0.0004918548, y: -0.0000004870962, z: 0.057362534}
 --- !u!33 &3187373001662830019
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -26990,6 +27088,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1813927906146718324}
   m_Mesh: {fileID: -6280318313641278750, guid: 0bee5b3b1193d4f12b56f5c0186eefe1, type: 3}
+--- !u!65 &4531981945726525441
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813927906146718324}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 0.016387796, y: 0.042695392, z: 0.07003528}
+  m_Center: {x: 0.0004927991, y: -0.0000000025923552, z: 0.05736252}
 --- !u!23 &4539702727401979727
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -28055,6 +28174,7 @@ GameObject:
   - component: {fileID: 7111847250120187397}
   - component: {fileID: 1367206527241968316}
   - component: {fileID: 4843159277058788051}
+  - component: {fileID: 7111847250120187398}
   m_Layer: 0
   m_Name: M_WheelBLRim
   m_TagString: Untagged
@@ -29547,6 +29667,7 @@ GameObject:
   - component: {fileID: 1518998876078983365}
   - component: {fileID: 7736543383570291689}
   - component: {fileID: 1128088916336142360}
+  - component: {fileID: 7736543383570291690}
   m_Layer: 0
   m_Name: M_WheelBLSpoke1
   m_TagString: Untagged
@@ -30218,6 +30339,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1580732873}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7111847250120187398
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5375729794526087724}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 0.0542361, y: 0.054236136, z: 0.019791493}
+  m_Center: {x: -0.000000014901161, y: -0.00000023841858, z: 0.0000005364418}
 --- !u!4 &7129599248421100097
 Transform:
   m_ObjectHideFlags: 0
@@ -30611,6 +30753,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7547861776060297212
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 692367425296788933}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 0.016387792, y: 0.04269538, z: 0.070035286}
+  m_Center: {x: 0.0004918497, y: 3.6788333e-11, z: 0.057361573}
 --- !u!4 &7570039469866365415
 Transform:
   m_ObjectHideFlags: 0
@@ -30828,6 +30991,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6678187295090033834}
   m_Mesh: {fileID: -330640358331938333, guid: 0bee5b3b1193d4f12b56f5c0186eefe1, type: 3}
+--- !u!65 &7736543383570291690
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6678187295090033834}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 0.016387785, y: 0.042695384, z: 0.070035286}
+  m_Center: {x: 0.0004918468, y: 5.768671e-10, z: 0.057362534}
 --- !u!23 &7743480366499838048
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -32671,6 +32855,7 @@ GameObject:
   - component: {fileID: 5280538762202343168}
   - component: {fileID: 2819377151144405030}
   - component: {fileID: 8031002187603364421}
+  - component: {fileID: 8703383728142142868}
   m_Layer: 0
   m_Name: M_WheelBLSpoke5
   m_TagString: Untagged
@@ -32678,6 +32863,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &8703383728142142868
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8703383728142142867}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 0.016387783, y: 0.042695377, z: 0.070035264}
+  m_Center: {x: 0.0004923282, y: -0.00000023327112, z: 0.057362508}
 --- !u!1 &8707273952360966544
 GameObject:
   m_ObjectHideFlags: 0
@@ -32882,6 +33088,7 @@ GameObject:
   - component: {fileID: 8674042572934343366}
   - component: {fileID: 5544400232869107705}
   - component: {fileID: 3087764615258601711}
+  - component: {fileID: 8896436313178406717}
   m_Layer: 0
   m_Name: M_WheelBLTire
   m_TagString: Untagged
@@ -32889,6 +33096,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &8896436313178406717
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8896436313178406716}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 0.022348737, y: 0.022348743, z: 0.022576656}
+  m_Center: {x: -0.0000000023283062, y: 9.926167e-24, z: 0.00000035762787}
 --- !u!33 &8897240366441148730
 MeshFilter:
   m_ObjectHideFlags: 0
