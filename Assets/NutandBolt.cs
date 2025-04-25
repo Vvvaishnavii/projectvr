@@ -9,31 +9,43 @@ public class NutAndBolt : MonoBehaviour
 
     private XRGrabInteractable grabInteractable;
     private int totalTurns = 0;
-    private float lastAngle = 0f;
+    private Quaternion lastRotation;
     private bool nutUnscrewed = false;
 
     void Start()
     {
         grabInteractable = GetComponent<XRGrabInteractable>();
+        lastRotation = transform.rotation;
+
         if (bolt != null)
-            bolt.GetComponent<Rigidbody>().isKinematic = true;
+            bolt.GetComponent<Rigidbody>().isKinematic = false;
     }
 
     void Update()
     {
         if (nutUnscrewed) return;
 
-        if (grabInteractable.isSelected) // Nut is grabbed
+        if (grabInteractable.isSelected)
         {
-            Vector3 nutDir = transform.position - boltAnchor.position;
-            float currentAngle = Mathf.Atan2(nutDir.y, nutDir.x) * Mathf.Rad2Deg;
+            // Lock position to bolt anchor
+            transform.position = boltAnchor.position;
 
-            float delta = Mathf.DeltaAngle(lastAngle, currentAngle);
-            lastAngle = currentAngle;
+            Quaternion currentRotation = transform.rotation;
+            Quaternion deltaRotation = currentRotation * Quaternion.Inverse(lastRotation);
+            lastRotation = currentRotation;
 
-            if (Mathf.Abs(delta) > 30f)  // Ignore micro shakes
+            // Extract rotation around local Y-axis
+            float angle;
+            Vector3 axis;
+            deltaRotation.ToAngleAxis(out angle, out axis);
+            if (angle > 180f) angle -= 360f;
+
+            // Only consider rotation around Y (or adjust axis as needed)
+            float yRotation = Vector3.Dot(axis, transform.up) * angle;
+
+            if (Mathf.Abs(yRotation) > 10f) // threshold to ignore jitter
             {
-                totalTurns += Mathf.RoundToInt(delta / 360f);
+                totalTurns += Mathf.RoundToInt(yRotation / 360f);
                 Debug.Log("Total turns: " + totalTurns);
                 if (Mathf.Abs(totalTurns) >= requiredRotations)
                 {
@@ -44,7 +56,7 @@ public class NutAndBolt : MonoBehaviour
         }
         else
         {
-            lastAngle = 0f;
+            lastRotation = transform.rotation;
         }
     }
 
@@ -52,6 +64,6 @@ public class NutAndBolt : MonoBehaviour
     {
         Debug.Log("Nut unscrewed! Bolt is free.");
         Rigidbody rb = bolt.GetComponent<Rigidbody>();
-        if (rb != null) rb.isKinematic = false;  // Bolt can now be pulled out.
+        rb.useGravity = true;
     }
 }
