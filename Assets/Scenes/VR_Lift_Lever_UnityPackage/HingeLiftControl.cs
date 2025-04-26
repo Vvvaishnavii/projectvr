@@ -2,32 +2,45 @@ using UnityEngine;
 
 public class HingeLiftControl : MonoBehaviour
 {
-    public Transform lever; // the lever you move in the X direction
-    public Rigidbody liftPlatform; // the lift platform that will move up/down
-    public float liftSpeed = 2f; // speed at which the platform moves
-    public float minLeverPositionX = 0f; // minimum X position of the lever
-    public float maxLeverPositionX = 1f; // maximum X position of the lever
+    [Header("Lever Settings")]
+    public Transform lever; // Lever that rotates on local X
+    public float minLeverAngleX = 0f; // Minimum rotation (degrees)
+    public float maxLeverAngleX = 90f; // Maximum rotation (degrees)
 
-    void FixedUpdate()
+    [Header("Lift Platform Settings")]
+    public Transform liftPlatform; // Platform that moves in local Y
+    public float minPlatformY = 0f;
+    public float maxPlatformY = 2f;
+    public float liftSpeed = 2f;
+
+    private void Start()
     {
-        // Get the current X position of the lever
-        float leverPositionX = lever.localPosition.x;
+        // Make sure lift platform starts at bottom position
+        Vector3 localPos = liftPlatform.localPosition;
+        liftPlatform.localPosition = new Vector3(localPos.x, minPlatformY, localPos.z);
+    }
 
-        // Ensure the lever position stays within the bounds
-        leverPositionX = Mathf.Clamp(leverPositionX, minLeverPositionX, maxLeverPositionX);
+    void Update()
+    {
+        // Read lever's local X rotation
+        float leverX = lever.localEulerAngles.x;
 
-        // Map the lever's X position to the lift platform's Y position (from 0 to 2 units high)
-        float t = Mathf.InverseLerp(minLeverPositionX, maxLeverPositionX, leverPositionX);
-        float targetHeight = Mathf.Lerp(0f, 2f, t); // Adjust the platform height based on the lever's X position
+        // Because rotations can go 0-360, we may need to fix it
+        if (leverX > 180f)
+            leverX -= 360f;
 
-        // Move the platform vertically (only modify Y position)
-        Vector3 targetPosition = new Vector3(
-            liftPlatform.position.x,  // Keep the current X position of the platform
-            targetHeight,              // Adjust the Y position of the platform (move up/down)
-            liftPlatform.position.z   // Keep the current Z position of the platform
-        );
+        // Clamp lever rotation between min and max
+        leverX = Mathf.Clamp(leverX, minLeverAngleX, maxLeverAngleX);
 
-        // Smoothly move the platform up and down based on the lever's X position
-        liftPlatform.MovePosition(Vector3.Lerp(liftPlatform.position, targetPosition, Time.fixedDeltaTime * liftSpeed));
+        // Map lever X rotation to 0-1 range
+        float t = Mathf.InverseLerp(minLeverAngleX, maxLeverAngleX, leverX);
+
+        // Calculate target platform Y
+        float targetY = Mathf.Lerp(minPlatformY, maxPlatformY, t);
+
+        // Smoothly move lift platform
+        Vector3 currentLocalPos = liftPlatform.localPosition;
+        Vector3 targetLocalPos = new Vector3(currentLocalPos.x, targetY, currentLocalPos.z);
+        liftPlatform.localPosition = Vector3.Lerp(currentLocalPos, targetLocalPos, Time.deltaTime * liftSpeed);
     }
 }
