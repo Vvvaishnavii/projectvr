@@ -18,6 +18,7 @@ TagManager:
   - sidess
   - nut
   - Screw
+  - Crank
   layers:
   - Default
   - TransparentFX
