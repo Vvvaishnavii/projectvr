@@ -7723,6 +7723,35 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &1256386049 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -2586164661038724390, guid: 3bbb45461d871a747ae6757db98e9355,
+    type: 3}
+  m_PrefabInstance: {fileID: 1291202789}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &1256386050
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1256386049}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.000008344836
+  m_Height: 0.0000977527
+  m_Direction: 1
+  m_Center: {x: -0.000000032603115, y: -0.000025887382, z: -0.00000005870378}
 --- !u!1001 &1291202789
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7826,6 +7855,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1291202794}
+    - targetCorrespondingSourceObject: {fileID: 5666858511584735161, guid: 3bbb45461d871a747ae6757db98e9355,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1291202796}
+    - targetCorrespondingSourceObject: {fileID: -2586164661038724390, guid: 3bbb45461d871a747ae6757db98e9355,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1256386050}
   m_SourcePrefab: {fileID: 100100000, guid: 3bbb45461d871a747ae6757db98e9355, type: 3}
 --- !u!1 &1291202790 stripped
 GameObject:
@@ -7894,7 +7931,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
-  m_Colliders: []
+  m_Colliders:
+  - {fileID: 1256386050}
   m_InteractionLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -7991,7 +8029,7 @@ MonoBehaviour:
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
-  m_MovementType: 2
+  m_MovementType: 0
   m_VelocityDamping: 1
   m_VelocityScale: 1
   m_AngularVelocityDamping: 1
@@ -8055,6 +8093,45 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 6049959359099248206, guid: 3bbb45461d871a747ae6757db98e9355, type: 3}
+--- !u!59 &1291202796
+HingeJoint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291202790}
+  m_ConnectedBody: {fileID: 0}
+  m_ConnectedArticulationBody: {fileID: 0}
+  m_Anchor: {x: 0, y: 0.000013140425, z: 0}
+  m_Axis: {x: 0, y: -1, z: 0}
+  m_AutoConfigureConnectedAnchor: 1
+  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_UseSpring: 0
+  m_Spring:
+    spring: 0
+    damper: 0
+    targetPosition: 0
+  m_UseMotor: 0
+  m_Motor:
+    targetVelocity: 0
+    force: 0
+    freeSpin: 0
+  m_UseLimits: 1
+  m_ExtendedLimits: 0
+  m_UseAcceleration: 0
+  m_Limits:
+    min: 0
+    max: 719.45355
+    bounciness: 0
+    bounceMinVelocity: 0.2
+    contactDistance: 0
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 1
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1 &1419359171
 GameObject:
   m_ObjectHideFlags: 0
