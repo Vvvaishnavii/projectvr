@@ -7767,6 +7767,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1291202791}
+    - targetCorrespondingSourceObject: {fileID: 5666858511584735161, guid: 3bbb45461d871a747ae6757db98e9355,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1291202793}
   m_SourcePrefab: {fileID: 100100000, guid: 3bbb45461d871a747ae6757db98e9355, type: 3}
 --- !u!1 &1291202790 stripped
 GameObject:
@@ -7801,6 +7805,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 94
   m_CollisionDetection: 0
+--- !u!4 &1291202792 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6041886253297765663, guid: 3bbb45461d871a747ae6757db98e9355,
+    type: 3}
+  m_PrefabInstance: {fileID: 1291202789}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1291202793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291202790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32d0b18961a3432439aae6c0dd369d12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crankWheel: {fileID: 1291202792}
+  engine: {fileID: 0}
+  liftPerRotation: 0.5
 --- !u!1 &1419359171
 GameObject:
   m_ObjectHideFlags: 0
