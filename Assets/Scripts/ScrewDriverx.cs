@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class ScrewDriver : MonoBehaviour
+public class ScrewDriverx : MonoBehaviour
 {
     public float rotationSpeed = 1f;
     public float risePerDegree = 0.001f;
