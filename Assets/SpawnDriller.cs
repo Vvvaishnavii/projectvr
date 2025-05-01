@@ -4,30 +4,34 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class SpawnDriller : MonoBehaviour
 {
     public GameObject drillerPrefab;
-    public Transform rightHandAttachPoint;  // Drag your right-hand controller's attach point here!
-    public string handTag = "Hand";         // Tag for your hand/controller
+    public Transform rightHandAttachPoint;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(handTag))
+        XRDirectInteractor interactor = other.GetComponent<XRDirectInteractor>();
+        if (interactor != null)
         {
-            XRDirectInteractor interactor = other.GetComponent<XRDirectInteractor>();
-
-            if (interactor != null)
-            {
-                SpawnInHand(interactor);
-            }
+            Debug.Log("Button touched by: " + other.name);
+            SpawnInHand(interactor);
         }
     }
 
-    public void SpawnInHand(XRDirectInteractor interactor)
+    private void SpawnInHand(XRDirectInteractor interactor)
     {
+        // Safety check
+        if (interactor.selectTarget != null)
+        {
+            Debug.Log("Already holding something.");
+            return;
+        }
+
         GameObject driller = Instantiate(drillerPrefab, rightHandAttachPoint.position, rightHandAttachPoint.rotation);
         XRGrabInteractable interactable = driller.GetComponent<XRGrabInteractable>();
 
         if (interactable != null)
         {
-            interactor.interactionManager.SelectEnter(interactor, interactable);  // Attach to hand immediately
+            interactor.interactionManager.SelectEnter(interactor, interactable);
+            Debug.Log("Prefab spawned and grabbed!");
         }
     }
 }
