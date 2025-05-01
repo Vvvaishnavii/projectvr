@@ -8,11 +8,11 @@ public class ScrewDriver : MonoBehaviour
     public float activationHeight = 0.1f;
     public XRGrabInteractable screwGrab;
 
-    public ScrewManager manager;
-
     private float currentRotation = 0f;
     private Vector3 initialLocalPosition;
     private bool isActivated = false;
+
+    public ScrewManager manager; // 👈 Assign in inspector
 
     void Start()
     {
@@ -26,24 +26,21 @@ public class ScrewDriver : MonoBehaviour
     {
         currentRotation += angle * rotationSpeed;
 
-        // Rotate and lift
         transform.Rotate(0f, angle * rotationSpeed, 0f, Space.Self);
+
         float rise = currentRotation * risePerDegree;
         transform.localPosition = initialLocalPosition - transform.up * rise;
 
-        if (!isActivated && Vector3.Distance(transform.localPosition, initialLocalPosition) > activationHeight)
+        if (!isActivated && Mathf.Abs(Vector3.Dot(transform.localPosition - initialLocalPosition, transform.up)) > activationHeight)
+
         {
             isActivated = true;
+
             if (screwGrab != null)
                 screwGrab.enabled = true;
 
             if (manager != null)
-                manager.CheckAllGroups();
+                manager.ScrewDetached(); // 👈 Notify manager
         }
-    }
-
-    public bool IsDetached()
-    {
-        return isActivated;
     }
 }

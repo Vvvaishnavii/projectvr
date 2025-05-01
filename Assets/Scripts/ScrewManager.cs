@@ -1,44 +1,35 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-[System.Serializable]
-public class ScrewGroup
-{
-    public GameObject boxToUnlock;
-    public List<ScrewDriver> screws = new();
-    [HideInInspector] public bool isUnlocked = false;
-}
-
 public class ScrewManager : MonoBehaviour
 {
-    public List<ScrewGroup> screwGroups = new();
+    public int totalScrews = 2; // 👈 or leave 0 to auto-detect
+    private int detachedScrews = 0;
 
-    public void CheckAllGroups()
+    public XRGrabInteractable boxToUnlock; // 👈 Drag the box here
+
+    void Start()
     {
-        foreach (ScrewGroup group in screwGroups)
+        // Optional auto-detect all screws in scene
+        if (totalScrews == 0)
         {
-            if (group.isUnlocked) continue;
+            totalScrews = FindObjectsOfType<ScrewDriver>().Length;
+        }
 
-            bool allDetached = true;
-            foreach (ScrewDriver screw in group.screws)
-            {
-                if (!screw.IsDetached())
-                {
-                    allDetached = false;
-                    break;
-                }
-            }
+        if (boxToUnlock != null)
+        {
+            boxToUnlock.enabled = false; // Disable grabbing until all screws detached
+        }
+    }
 
-            if (allDetached)
-            {
-                group.isUnlocked = true;
-                if (group.boxToUnlock.TryGetComponent(out XRGrabInteractable grab))
-                {
-                    grab.enabled = true;
-                    Debug.Log($"{group.boxToUnlock.name} is now unlocked!");
-                }
-            }
+    public void ScrewDetached()
+    {
+        detachedScrews++;
+
+        if (detachedScrews >= totalScrews && boxToUnlock != null)
+        {
+            Debug.Log("All screws detached! Box can be removed.");
+            boxToUnlock.enabled = true;
         }
     }
 }
