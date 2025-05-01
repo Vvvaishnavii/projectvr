@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-// 🧩 Put the helper class outside the main class
 [System.Serializable]
 public class ScrewGroup
 {
