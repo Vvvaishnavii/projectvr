@@ -1,18 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class OilLeakController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public ParticleSystem oilDripParticles;
+    public GameObject oilPool;
+    public float poolDelay = 3f;
+
     void Start()
     {
-        
+        oilDripParticles.gameObject.SetActive(false);
+        oilPool.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void TriggerLeak()
     {
-        
+        oilDripParticles.gameObject.SetActive(true);
+        oilDripParticles.Play();
+
+        // Start pooling effect after delay
+        Invoke(nameof(ShowOilPool), poolDelay);
+    }
+
+    void ShowOilPool()
+    {
+        oilPool.SetActive(true);
     }
 }

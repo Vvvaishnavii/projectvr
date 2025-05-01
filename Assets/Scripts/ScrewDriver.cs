@@ -12,7 +12,8 @@ public class ScrewDriver : MonoBehaviour
     private Vector3 initialLocalPosition;
     private bool isActivated = false;
 
-    public ScrewManager manager; // 👈 Assign in inspector
+    public ScrewManager manager;               // 👈 Still named ScrewManager
+    public XRGrabInteractable relatedBox;      // 👈 Box this screw is linked to
 
     void Start()
     {
@@ -32,15 +33,14 @@ public class ScrewDriver : MonoBehaviour
         transform.localPosition = initialLocalPosition - transform.up * rise;
 
         if (!isActivated && Mathf.Abs(Vector3.Dot(transform.localPosition - initialLocalPosition, transform.up)) > activationHeight)
-
         {
             isActivated = true;
 
             if (screwGrab != null)
                 screwGrab.enabled = true;
 
-            if (manager != null)
-                manager.ScrewDetached(); // 👈 Notify manager
+            if (manager != null && relatedBox != null)
+                manager.ScrewDetached(relatedBox);
         }
     }
 }
