@@ -20,6 +20,7 @@ TagManager:
   - Screw
   - Crank
   - Engine
+  - Hand
   layers:
   - Default
   - TransparentFX
