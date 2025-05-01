@@ -5,13 +5,18 @@ public class SpawnDriller : MonoBehaviour
 {
     public GameObject drillerPrefab;
     public Transform rightHandAttachPoint;  // Drag your right-hand controller's attach point here!
+    public string handTag = "Hand";         // Tag for your hand/controller
 
     private void OnTriggerEnter(Collider other)
     {
-        // Check if the collider belongs to the right hand interactor
-        if (other.GetComponent<XRDirectInteractor>())
+        if (other.CompareTag(handTag))
         {
-            SpawnInHand(other.GetComponent<XRDirectInteractor>());
+            XRDirectInteractor interactor = other.GetComponent<XRDirectInteractor>();
+
+            if (interactor != null)
+            {
+                SpawnInHand(interactor);
+            }
         }
     }
 
