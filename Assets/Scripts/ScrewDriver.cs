@@ -15,13 +15,28 @@ public class ScrewDriver : MonoBehaviour
     public ScrewManager manager;               // 👈 Still named ScrewManager
     public XRGrabInteractable relatedBox;      // 👈 Box this screw is linked to
 
-    void Start()
-    {
-        initialLocalPosition = transform.localPosition;
+    public AudioSource screwAudioSource;       // 🎵 Add this line
 
-        if (screwGrab != null)
-            screwGrab.enabled = false;
+   void Start()
+{
+    initialLocalPosition = transform.localPosition;
+
+    if (screwGrab != null)
+        screwGrab.enabled = false;
+
+    if (screwAudioSource != null)
+    {
+        Debug.Log("AudioSource is assigned.");
+        Debug.Log("Assigned clip: " + screwAudioSource.clip?.name);
+        screwAudioSource.Stop();
+        screwAudioSource.playOnAwake = false;
     }
+    else
+    {
+        Debug.LogWarning("No AudioSource assigned to screwAudioSource!");
+    }
+}
+
 
     public void RotateScrew(float angle)
     {
@@ -31,6 +46,14 @@ public class ScrewDriver : MonoBehaviour
 
         float rise = currentRotation * risePerDegree;
         transform.localPosition = initialLocalPosition - transform.up * rise;
+
+        // ✅ Play the sound when rotated
+       if (screwAudioSource != null && !screwAudioSource.isPlaying)
+{
+    screwAudioSource.Play();
+    Debug.Log("Playing screw audio");
+}
+
 
         if (!isActivated && Mathf.Abs(Vector3.Dot(transform.localPosition - initialLocalPosition, transform.up)) > activationHeight)
         {
