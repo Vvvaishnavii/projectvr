@@ -8,7 +8,7 @@ public class ButtonSoundManager : MonoBehaviour, IPointerEnterHandler, IPointerC
     public AudioSource audioSource;
     public AudioClip hoverClip;
     public AudioClip clickClip;
-    public string sceneToLoad;
+    //public Scene scene;
 
     // When the mouse hovers over the button
     public void OnPointerEnter(PointerEventData eventData)
@@ -21,6 +21,6 @@ public class ButtonSoundManager : MonoBehaviour, IPointerEnterHandler, IPointerC
     {
         audioSource.PlayOneShot(clickClip);
         // Load new scene
-        SceneManager.LoadScene(sceneToLoad);
+        SceneManager.LoadScene("SampleScene");
     }
 }
