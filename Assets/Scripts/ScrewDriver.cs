@@ -38,32 +38,35 @@ public class ScrewDriver : MonoBehaviour
 }
 
 
-    public void RotateScrew(float angle)
-    {
-        currentRotation += angle * rotationSpeed;
-
-        transform.Rotate(0f, angle * rotationSpeed, 0f, Space.Self);
-
-        float rise = currentRotation * risePerDegree;
-        transform.localPosition = initialLocalPosition - transform.up * rise;
-
-        // ✅ Play the sound when rotated
-       if (screwAudioSource != null && !screwAudioSource.isPlaying)
+   public void RotateScrew(float angle)
 {
-    screwAudioSource.Play();
-    Debug.Log("Playing screw audio");
+    currentRotation += angle * rotationSpeed;
+
+    transform.Rotate(0f, angle * rotationSpeed, 0f, Space.Self);
+
+    float rise = currentRotation * risePerDegree;
+    transform.localPosition = initialLocalPosition - transform.up * rise;
+
+    // ✅ Play the sound when rotated
+    if (screwAudioSource != null && !screwAudioSource.isPlaying)
+    {
+        screwAudioSource.Play();
+        Debug.Log("Playing screw audio");
+    }
+
+    // ✅ When screw rises beyond activationHeight, hide it and call manager
+    if (!isActivated && Mathf.Abs(Vector3.Dot(transform.localPosition - initialLocalPosition, transform.up)) > activationHeight)
+    {
+        isActivated = true;
+
+        // ❌ Removed: screwGrab.enabled = true;
+
+        // ✅ Hide the screw
+        gameObject.SetActive(false);
+
+        if (manager != null && relatedBox != null)
+            manager.ScrewDetached(relatedBox);
+    }
 }
 
-
-        if (!isActivated && Mathf.Abs(Vector3.Dot(transform.localPosition - initialLocalPosition, transform.up)) > activationHeight)
-        {
-            isActivated = true;
-
-            if (screwGrab != null)
-                screwGrab.enabled = true;
-
-            if (manager != null && relatedBox != null)
-                manager.ScrewDetached(relatedBox);
-        }
-    }
 }

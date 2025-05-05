@@ -1,10 +1,12 @@
+using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class x : MonoBehaviour
+public class obj : MonoBehaviour
 {
-     public TMP_Text infoText;  // Link this from Canvas
+    public TMP_Text infoText;  // Link this from Canvas
     public XRGrabInteractable[] objectsToMonitor;  // Drag your grab objects here
 
     private void Start()
